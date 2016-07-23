@@ -8,10 +8,14 @@
   <h2>User 0 Wants:</h2>
   <ul *ngFor="let item of items | async">
     <li class="text">
-      {{item.id}} -- {{item.displaytext}}
+      {{item.id}}<br />
+      {{item.displaytext}}
       <ul *ngFor="#sample of item.samples">
         <li>
-          {{sample.id}} -- {{sample.vote}} [{{sample.latitude}},{{sample.longitude}}] -- {{sample.ts}}
+          {{sample.id}}<br />
+          {{sample.vote}}<br />
+          {{sample.latitude}},{{sample.longitude}}<br />
+          {{sample.ts}}
         </li>
       </ul>
     </li>
