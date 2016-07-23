@@ -1,0 +1,36 @@
+# logs
+logs
+*.log
+
+# node files
+/node_modules
+
+# typing
+/typings/browser*
+/typings/main*
+/tsd_typings
+
+#ionic 
+/engine
+/platforms
+/plugins
+/www/build
+
+# dist
+/.tmp
+/dist
+.webpack.json
+
+# docs
+/doc
+/runbook/build
+
+# coverage
+/coverage
+
+# os
+.DS_Store
+
+# editors
+*.swp
+*~
