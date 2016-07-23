@@ -1,56 +1,45 @@
 {
-    "users": [
-        {
-            "id" : "abc123",
-            "username" : "bsmith",
-            "displayname" : "Bob Smith",
-            "wants" : [{
-                "id" : "123abc",
-                "displaytext" : "Should I buy a couch?",
-                "samples" : [
-                    {
-                        "id" : "123abc",
-                        "ts" : "2008-09-22T14:01:54Z",
-                        "vote" : -1,
-                        "latitude" : 37.423021,
-                        "longitude" : -122.083739
-                    },
-                    {
-                        "id" : "124abc",
-                        "ts" : "2008-09-23T14:01:54Z",
-                        "vote" : 0,
-                        "latitude" : 37.423021,
-                        "longitude" : -122.083739
-                    }
-                ]
-            }]
-        },
-        {
-            "id" : "abc124",
-            "username" : "jdoe",
-            "displayname" : "Jane Doe",
-            "wants" : [{
-                "id" : "123abc",
-                "displaytext" : "Should I get a dog?",
-                "samples" : [
-                    {
-                        "id" : "123abc",
-                        "ts" : "2008-09-22T14:01:54Z",
-                        "vote" : -1,
-                        "latitude" : 37.423021,
-                        "longitude" : -122.083739
-                    },
-                    {
-                        "id" : "124abc",
-                        "ts" : "2008-09-23T14:01:54Z",
-                        "vote" : 1,
-                        "latitude" : 37.423021,
-                        "longitude" : -122.083739
-                    }
-                ]
-            }]
-        }
-    ]
+  "users" : [ {
+    "displayname" : "Bob Smith",
+    "id" : "abc123",
+    "username" : "bsmith",
+    "wants" : [ {
+      "displaytext" : "Should I buy a couch?",
+      "id" : "123abc",
+      "samples" : [ {
+        "id" : "123abc",
+        "latitude" : 37.423021,
+        "longitude" : -122.083739,
+        "ts" : "2008-09-22T14:01:54Z",
+        "vote" : -1
+      }, {
+        "id" : "124abc",
+        "latitude" : 37.423021,
+        "longitude" : -122.083739,
+        "ts" : "2008-09-23T14:01:54Z",
+        "vote" : 0
+      } ]
+    } ]
+  }, {
+    "displayname" : "Jane Doe",
+    "id" : "abc124",
+    "username" : "jdoe",
+    "wants" : [ {
+      "displaytext" : "Should I get a dog?",
+      "id" : "123abc",
+      "samples" : [ {
+        "id" : "123abc",
+        "latitude" : 37.423021,
+        "longitude" : -122.083739,
+        "ts" : "2008-09-22T14:01:54Z",
+        "vote" : -1
+      }, {
+        "id" : "124abc",
+        "latitude" : 37.423021,
+        "longitude" : -122.083739,
+        "ts" : "2008-09-23T14:01:54Z",
+        "vote" : 1
+      } ]
+    } ]
+  } ]
 }
-
-
