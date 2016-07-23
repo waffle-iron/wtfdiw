@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="home">
+  <h2>User 0 Wants:</h2>
+  <ul *ngFor="let item of items | async">
+    <li class="text">
+      {{item.id}} -- {{item.displaytext}}
+      <ul *ngFor="#sample of item.samples">
+        <li>
+          {{sample.id}} -- {{sample.vote}} [{{sample.latitude}},{{sample.longitude}}] -- {{sample.ts}}
+        </li>
+      </ul>
+    </li>
+  </ul>
+</ion-content>
