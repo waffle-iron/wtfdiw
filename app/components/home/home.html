@@ -5,24 +5,29 @@
     </button>
     <ion-title>Home</ion-title>
   </ion-navbar>
+
+  <button fab fab-top fab-right class="fab-footer">
+    <ion-icon name="add" is-active="false"></ion-icon>
+  </button>
 </ion-header>
 
 <ion-content padding class="home">
-  <h2>User 0 Wants:</h2>
-  <ul *ngFor="let item of items | async">
-    <li class="text">
-      {{item.id}}<br />
-      {{item.displaytext}}
-      <ul *ngFor="let sample of item.samples">
-        <li>
-          {{sample.id}}<br />
-          {{sample.vote}}<br />
-          {{sample.latitude}},{{sample.longitude}}<br />
-          {{sample.ts}}
-        </li>
-      </ul>
-    </li>
-  </ul>
+  <h2>Latest Wants</h2>
 
-  <button secondary menuToggle>Toggle Menu</button>
+  <ion-card *ngFor="let item of items | async">
+    <ion-card-header>
+      {{item.displaytext}}
+    </ion-card-header>
+    <ion-list *ngFor="let sample of item.samples">
+      <ion-item [ngSwitch]="sample.vote">
+        <ion-icon *ngSwitchCase="0" name="thumbs-down" danger item-left></ion-icon>
+        <ion-icon *ngSwitchCase="1" name="thumbs-up" primary item-left></ion-icon>
+        {{sample.ts | date:'short'}}
+      </ion-item>
+      <ion-item>
+        <ion-icon name="compass" item-left></ion-icon>
+        {{sample.latitude}}, {{sample.longitude}}
+      </ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>
