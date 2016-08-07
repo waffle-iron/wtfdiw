@@ -1,24 +1,50 @@
-import {Component} from '@angular/core';
-import {Platform, ionicBootstrap} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {Platform, Nav, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {FIREBASE_PROVIDERS, defaultFirebase, AngularFire} from 'angularfire2';
+import {FIREBASE_PROVIDERS, defaultFirebase} from 'angularfire2';
 
 import {FIREBASE_CONFIG} from './modules/constants';
-import {TabsPage} from './components/tabs/tabs';
+import {HomeComponent} from './components/home/home';
+import {AboutComponent} from './components/about/about';
+import {ContactComponent} from './components/contact/contact';
 
 @Component({
-  template: '<ion-nav [root]="rootPage"></ion-nav>'
+  templateUrl: 'build/app.html'
 })
 
 export class WtfDiw {
-  private rootPage: any;
+  @ViewChild(Nav) nav: Nav;
+
+  private rootComponent: any;
+
+  pages: Array<{title: string, component: any}>;
 
   constructor(private platform: Platform) {
-    this.rootPage = TabsPage;
+    this.initializeApp();
 
-    platform.ready().then(() => {
-      StatusBar.styleDefault();
-    });
+    this.rootComponent = HomeComponent;
+
+    this.pages = [{
+      title: 'Home',
+      component: HomeComponent
+    }, {
+      title: 'About',
+      component: AboutComponent
+    }, {
+      title: 'Contact',
+      component: ContactComponent
+    }];
+  }
+
+  initializeApp() {
+    this.platform.ready()
+      .then(() => {
+        StatusBar.styleDefault();
+      });
+  }
+
+  openPage(page) {
+    this.nav.setRoot(page.component);
   }
 }
 

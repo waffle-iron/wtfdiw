@@ -1,5 +1,8 @@
 <ion-header>
   <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,7 +13,7 @@
     <li class="text">
       {{item.id}}<br />
       {{item.displaytext}}
-      <ul *ngFor="#sample of item.samples">
+      <ul *ngFor="let sample of item.samples">
         <li>
           {{sample.id}}<br />
           {{sample.vote}}<br />
@@ -20,4 +23,6 @@
       </ul>
     </li>
   </ul>
+
+  <button secondary menuToggle>Toggle Menu</button>
 </ion-content>
