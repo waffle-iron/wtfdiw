@@ -1,7 +1,14 @@
 import {Component, ViewChild} from '@angular/core';
 import {Platform, Nav, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {FIREBASE_PROVIDERS, defaultFirebase} from 'angularfire2';
+import {
+  FIREBASE_PROVIDERS, 
+  defaultFirebase, 
+  AngularFire, 
+  AuthMethods, 
+  AuthProviders, 
+  firebaseAuthConfig
+} from 'angularfire2';
 
 import {FIREBASE_CONFIG} from './modules/constants';
 import {WantListPage} from './pages/want-list/want-list';
@@ -50,5 +57,9 @@ export class WtfDiw {
 
 ionicBootstrap(WtfDiw, [
   FIREBASE_PROVIDERS,
-  defaultFirebase(FIREBASE_CONFIG)
+  defaultFirebase(FIREBASE_CONFIG),
+  firebaseAuthConfig({
+    provider: AuthProviders.Google,
+    method: AuthMethods.Redirect
+  })
 ]);

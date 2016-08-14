@@ -18,7 +18,9 @@
     <ion-list *ngFor="let want of wants | async">
       <ion-item-sliding #slidingItem>
         <a ion-item (tap)="wantTapped(want)">
-          <ion-badge item-left>{{want.samples.length}}</ion-badge>
+          <ion-badge item-left [ngClass]="{'badge-light': !(want.samples?.length)}">
+            {{want.samples?.length || 0}}
+          </ion-badge>
           {{want.displaytext}}
           <p>
             <small>Last sampled <span dark>20 minutes</span> ago.</small>
@@ -48,7 +50,7 @@
     </ion-list>
   </ion-card>
 
-  <button fab fab-bottom fab-right class="fab-footer">
+  <button fab fab-bottom fab-right class="fab-footer" (tap)="presentCreateWantModal()">
     <ion-icon name="add" is-active="false"></ion-icon>
   </button>
 </ion-content>

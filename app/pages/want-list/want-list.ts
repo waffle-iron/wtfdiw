@@ -5,13 +5,15 @@ import {
   List,
   Loading,
   LoadingController,
-  ItemSliding
+  ItemSliding,
+  ModalController
 } from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {Subject} from 'rxjs/Subject';
 
 import {WantItem} from '../../modules/wants/want-item';
 import {WantDetailPage} from '../want-detail/want-detail';
+import {CreateWantModalPage} from './create-want-modal';
 
 @Component({
   templateUrl: './build/pages/want-list/want-list.html'
@@ -26,6 +28,7 @@ export class WantListPage {
   constructor(private nav: NavController,
               private navParams: NavParams,
               private loading: LoadingController,
+              private modal: ModalController,
               private firebase: AngularFire) {
     this.nav = nav;
     this.loading = loading;
@@ -48,6 +51,11 @@ export class WantListPage {
 
   sampleTapped(want: WantItem, vote: number) {
     console.log(`vote: ${vote} on ${want.id}`);
+  }
+
+  presentCreateWantModal() {
+    let modal = this.modal.create(CreateWantModalPage);
+    modal.present();
   }
 
   private presentLoading() {

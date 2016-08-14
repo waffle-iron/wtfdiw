@@ -1,8 +1,13 @@
 import {WantItemSample} from './want-item-sample';
 
 export class WantItem {
-  $key: string;
-  displayname: string;
-  id: string;
-  samples: WantItemSample[];
+  id: string = '';
+  displaytext: string = '';
+  samples: WantItemSample[] = [];
+
+  constructor(props) {
+    this.id = props.id;
+    this.displaytext = props.displaytext;
+    this.samples = props.samples || [];
+  }
 }
