@@ -9,7 +9,7 @@ import {AboutPage} from './pages/about/about';
 import {ContactPage} from './pages/contact/contact';
 
 @Component({
-  templateUrl: 'build/app.html'
+  templateUrl: './build/app.html'
 })
 
 export class WtfDiw {

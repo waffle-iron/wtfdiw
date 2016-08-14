@@ -15,15 +15,15 @@
       Latest Wants
     </ion-card-header>
 
-    <ion-list *ngFor="let want of wants | async" #list>
+    <ion-list *ngFor="let want of wants | async">
       <ion-item-sliding #slidingItem>
-        <ion-item (tap)="wantTapped(want)">
+        <a ion-item (tap)="wantTapped(want)">
           <ion-badge item-left>{{want.samples.length}}</ion-badge>
           {{want.displaytext}}
           <p>
             <small>Last sampled <span dark>20 minutes</span> ago.</small>
           </p>
-        </ion-item>
+        </a>
 
         <ion-item-options side="left">
           <button primary (tap)="wantTapped(want)">
@@ -40,7 +40,7 @@
           <button secondary (tap)="sampleTapped(want, 1)">
             <ion-icon name="thumbs-up"></ion-icon>
           </button>
-          <button danger (tap)="archiveTapped(want, 0)">
+          <button danger (tap)="sampleTapped(want, 0)">
             <ion-icon name="thumbs-down"></ion-icon>
           </button>
         </ion-item-options>

@@ -14,37 +14,36 @@ import {WantItem} from '../../modules/wants/want-item';
 import {WantDetailPage} from '../want-detail/want-detail';
 
 @Component({
-  templateUrl: 'build/pages/want-list/want-list.html'
+  templateUrl: './build/pages/want-list/want-list.html'
 })
 
 export class WantListPage {
   wants: FirebaseListObservable<WantItem[]>;
   loader: Loading;
 
-  @ViewChild('list', {read: List}) list: List;
   @ViewChild('slidingItem', {read: ItemSliding}) slidingItem: ItemSliding;
 
   constructor(private nav: NavController,
               private navParams: NavParams,
               private loading: LoadingController,
-              af: AngularFire) {
+              private firebase: AngularFire) {
     this.nav = nav;
     this.loading = loading;
+    this.firebase = firebase;
+  }
 
-    this.wants = af.database.list('/users/0/wants');
+  ngOnInit() {
+    this.wants = this.firebase.database.list('/users/0/wants');
     this.wants.subscribe(() => this.loader.dismiss());
-
     this.presentLoading();
   }
 
   wantTapped(want: WantItem) {
-    console.log(' WANT TAPPED ', want);
     this.nav.push(WantDetailPage, {want: want});
-    this.slidingItem.close();
   }
 
   archiveTapped(want: WantItem) {
-    this.slidingItem.close();
+    console.log(`archive tapped: ${want.id}`);
   }
 
   sampleTapped(want: WantItem, vote: number) {
