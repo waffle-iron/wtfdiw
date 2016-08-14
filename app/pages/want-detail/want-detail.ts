@@ -4,10 +4,10 @@ import {AngularFire, FirebaseObjectObservable} from 'angularfire2';
 import {Subject} from 'rxjs/Subject';
 
 @Component({
-  templateUrl: 'build/components/want-detail/want-detail.html'
+  templateUrl: 'build/pages/want-detail/want-detail.html'
 })
 
-export class WantDetailComponent {
+export class WantDetailPage {
   want: FirebaseObjectObservable<any>;
 
   constructor(private nav: NavController,
