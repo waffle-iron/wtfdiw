@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Want List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="want-detail">
+  <h1>{{(want | async)?.displaytext}}</h1>
+
+  <ion-row no-padding>
+    <ion-col no-padding>
+      <button clear small>
+        Next sample in 30 minutes.
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <ion-card>
+    <ion-card-header>
+      Latest Samples
+    </ion-card-header>
+    <ion-list *ngFor="let sample of (want | async)?.samples">
+      <ion-item [ngSwitch]="sample.vote">
+        <ion-icon *ngSwitchCase="0" name="thumbs-down" danger item-left></ion-icon>
+        <ion-icon *ngSwitchCase="1" name="thumbs-up" primary item-left></ion-icon>
+        <h2>{{sample.ts | date:'short'}}</h2>
+        <p>Replied within N seconds.</p>
+        <ion-row no-padding>
+          <ion-col no-padding>
+            <button clear small>
+              <ion-icon name="key"></ion-icon>
+              {{sample.id}}
+            </button>
+          </ion-col>
+          <ion-col no-padding>
+            <button clear small>
+              <ion-icon name="pin"></ion-icon>
+              {{sample.latitude}}, {{sample.longitude}}
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <button fab fab-bottom fab-right class="fab-footer">
+    <ion-icon name="add" is-active="false"></ion-icon>
+  </button>
+</ion-content>

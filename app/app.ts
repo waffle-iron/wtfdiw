@@ -4,7 +4,7 @@ import {StatusBar} from 'ionic-native';
 import {FIREBASE_PROVIDERS, defaultFirebase} from 'angularfire2';
 
 import {FIREBASE_CONFIG} from './modules/constants';
-import {HomeComponent} from './components/home/home';
+import {WantListComponent} from './components/want-list/want-list';
 import {AboutComponent} from './components/about/about';
 import {ContactComponent} from './components/contact/contact';
 
@@ -22,11 +22,11 @@ export class WtfDiw {
   constructor(private platform: Platform) {
     this.initializeApp();
 
-    this.rootComponent = HomeComponent;
+    this.rootComponent = WantListComponent;
 
     this.pages = [{
-      title: 'Home',
-      component: HomeComponent
+      title: 'Want List',
+      component: WantListComponent
     }, {
       title: 'About',
       component: AboutComponent

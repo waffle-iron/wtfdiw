@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>WTFDIW</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="want-list">
+  <h2>Want List</h2>
+
+  <ion-card>
+    <ion-card-header>
+      Latest Wants
+    </ion-card-header>
+    <ion-list *ngFor="let want of wants | async" (click)="wantTapped($event, want)">
+      <ion-item>
+        <ion-badge item-left>{{want.samples.length}}</ion-badge>
+        {{want.displaytext}}
+        <p>
+          <small>Last sampled N minutes ago.</small>
+        </p>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <button fab fab-bottom fab-right class="fab-footer">
+    <ion-icon name="add" is-active="false"></ion-icon>
+  </button>
+</ion-content>
