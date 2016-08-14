@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, ItemSliding} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {Subject} from 'rxjs/Subject';
 
@@ -19,9 +19,10 @@ export class WantListComponent {
     this.wants = af.database.list('/users/0/wants');
   }
 
-  wantTapped(event, want) {
+  wantTapped(sliding: ItemSliding, want) {
     this.nav.push(WantDetailComponent, {
       want: want
     });
+    sliding.close();
   }
 }

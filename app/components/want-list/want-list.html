@@ -14,14 +14,37 @@
     <ion-card-header>
       Latest Wants
     </ion-card-header>
-    <ion-list *ngFor="let want of wants | async" (click)="wantTapped($event, want)">
-      <ion-item>
-        <ion-badge item-left>{{want.samples.length}}</ion-badge>
-        {{want.displaytext}}
-        <p>
-          <small>Last sampled N minutes ago.</small>
-        </p>
-      </ion-item>
+
+    <ion-list *ngFor="let want of wants | async">
+      <ion-item-sliding #item>
+        <ion-item (tap)="wantTapped(item, want)">
+          <ion-badge item-left>{{want.samples.length}}</ion-badge>
+          {{want.displaytext}}
+          <p>
+            <small>Last sampled <span dark>20 minutes</span> ago.</small>
+          </p>
+        </ion-item>
+
+        <ion-item-options side="left">
+          <button primary (tap)="wantTapped(item, want)">
+            <ion-icon name="menu"></ion-icon>
+            Details
+          </button>
+          <button dark>
+            <ion-icon name="archive"></ion-icon>
+            Archive
+          </button>
+        </ion-item-options>
+
+        <ion-item-options side="right">
+          <button secondary>
+            <ion-icon name="thumbs-up"></ion-icon>
+          </button>
+          <button danger>
+            <ion-icon name="thumbs-down"></ion-icon>
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
   </ion-card>
 
