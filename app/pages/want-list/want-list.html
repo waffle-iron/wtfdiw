@@ -7,48 +7,44 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="want-list">
-  <h2>Want List</h2>
-
-  <ion-card>
-    <ion-card-header>
+<ion-content class="want-list outer-content">
+  <ion-list>
+    <ion-list-header>
       Latest Wants
-    </ion-card-header>
+    </ion-list-header>
 
-    <ion-list *ngFor="let want of wants | async">
-      <ion-item-sliding #slidingItem>
-        <a ion-item (tap)="wantTapped(want)">
-          <ion-badge item-left [ngClass]="{'badge-light': !(want.samples?.length)}">
-            {{want.samples?.length || 0}}
-          </ion-badge>
-          {{want.displaytext}}
-          <p>
-            <small>Last sampled <span dark>20 minutes</span> ago.</small>
-          </p>
-        </a>
+    <ion-item-sliding *ngFor="let want of wants | async" #slidingItem>
+      <a ion-item (tap)="wantTapped(want)">
+        <ion-badge item-left [ngClass]="{'badge-light': !(want.samples?.length)}">
+          {{want.samples?.length || 0}}
+        </ion-badge>
+        {{want.displaytext}}
+        <p>
+          Last sampled <span dark>20 minutes</span> ago.
+        </p>
+      </a>
 
-        <ion-item-options side="left">
-          <button primary (tap)="wantTapped(want)">
-            <ion-icon name="menu"></ion-icon>
-            Details
-          </button>
-          <button dark (tap)="archiveTapped(want)">
-            <ion-icon name="archive"></ion-icon>
-            Archive
-          </button>
-        </ion-item-options>
+      <ion-item-options side="left">
+        <button primary (tap)="wantTapped(want)">
+          <ion-icon name="menu"></ion-icon>
+          Details
+        </button>
+        <button dark (tap)="archiveTapped(want)">
+          <ion-icon name="archive"></ion-icon>
+          Archive
+        </button>
+      </ion-item-options>
 
-        <ion-item-options side="right">
-          <button secondary (tap)="sampleTapped(want, 1)">
-            <ion-icon name="thumbs-up"></ion-icon>
-          </button>
-          <button danger (tap)="sampleTapped(want, 0)">
-            <ion-icon name="thumbs-down"></ion-icon>
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
-  </ion-card>
+      <ion-item-options side="right">
+        <button secondary (tap)="sampleTapped(want, 1)">
+          <ion-icon name="thumbs-up"></ion-icon>
+        </button>
+        <button danger (tap)="sampleTapped(want, 0)">
+          <ion-icon name="thumbs-down"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 
   <button fab fab-bottom fab-right class="fab-footer" (tap)="presentCreateWantModal()">
     <ion-icon name="add" is-active="false"></ion-icon>
