@@ -8,8 +8,8 @@ import {
   ItemSliding,
   ModalController
 } from 'ionic-angular';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {LocalNotifications} from 'ionic-native';
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {Subject} from 'rxjs/Subject';
 
 import {WantItem} from '../../modules/wants/want-item';
@@ -30,11 +30,9 @@ export class WantListPage {
               private navParams: NavParams,
               private loading: LoadingController,
               private modal: ModalController,
-              //private notifications: LocalNotifications,
               private firebase: AngularFire) {
     this.nav = nav;
     this.loading = loading;
-    //this.notifications = notifications;
     this.firebase = firebase;
   }
 
@@ -43,6 +41,10 @@ export class WantListPage {
     this.wants.subscribe(() => this.loader.dismiss());
     this.presentLoading();
     this.scheduleNotifications();
+  }
+
+  shouldShowSampling(want: WantItem) {
+    return !!(want.id === '123abc');
   }
 
   wantTapped(want: WantItem) {
@@ -71,13 +73,5 @@ export class WantListPage {
   }
 
   private scheduleNotifications() {
-    LocalNotifications.schedule({
-      title: 'Herp derp',
-      text: 'Lorem ipsum dolor sit amet lorem ipsum dolor sit amet.',
-      every: 'minute',
-      at: new Date(new Date().getTime()),
-      led: 'FF0000',
-      sound: null
-    });
   }
 }

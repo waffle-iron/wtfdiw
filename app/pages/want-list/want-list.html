@@ -19,27 +19,28 @@
           {{want.samples?.length || 0}}
         </ion-badge>
         {{want.displaytext}}
-        <p>
+        <p *ngIf="!shouldShowSampling(want)">
           Last sampled <span dark>20 minutes</span> ago.
+        </p>
+        <p *ngIf="shouldShowSampling(want)">
+          <span danger>Now sampling. Slide left to rate.</span>
         </p>
       </a>
 
       <ion-item-options side="left">
-        <button primary (tap)="wantTapped(want)">
-          <ion-icon name="menu"></ion-icon>
-          Details
-        </button>
-        <button dark (tap)="archiveTapped(want)">
-          <ion-icon name="archive"></ion-icon>
-          Archive
+        <button primary small (tap)="wantTapped(want)">
+          <ion-icon name="more"></ion-icon>
         </button>
       </ion-item-options>
 
-      <ion-item-options side="right">
-        <button secondary (tap)="sampleTapped(want, 1)">
+      <ion-item-options side="right" *ngIf="shouldShowSampling(want)">
+        <button secondary small (tap)="sampleTapped(want, 1)">
           <ion-icon name="thumbs-up"></ion-icon>
         </button>
-        <button danger (tap)="sampleTapped(want, 0)">
+        <button dark small (tap)="sampleDismissTapped(want)">
+          <ion-icon name="notifications-off"></ion-icon>
+        </button>
+        <button danger small (tap)="sampleTapped(want, 0)">
           <ion-icon name="thumbs-down"></ion-icon>
         </button>
       </ion-item-options>
