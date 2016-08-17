@@ -14,7 +14,7 @@
     </ion-list-header>
 
     <ion-item-sliding *ngFor="let want of wants | async" #slidingItem>
-      <a ion-item (tap)="wantTapped(want)">
+      <a ion-item (click)="navigateToDetail(want)">
         <ion-badge item-left [ngClass]="{'badge-light': !(want.samples?.length)}">
           {{want.samples?.length || 0}}
         </ion-badge>
@@ -23,31 +23,31 @@
           Last sampled <span dark>20 minutes</span> ago.
         </p>
         <p *ngIf="shouldShowSampling(want)">
-          <span danger>Now sampling. Slide left to rate.</span>
+          <span primary>Now sampling. Slide left to rate.</span>
         </p>
       </a>
 
       <ion-item-options side="left">
-        <button primary small (tap)="wantTapped(want)">
+        <button primary small (click)="navigateToDetail(want)">
           <ion-icon name="more"></ion-icon>
         </button>
       </ion-item-options>
 
       <ion-item-options side="right" *ngIf="shouldShowSampling(want)">
-        <button secondary small (tap)="sampleTapped(want, 1)">
+        <button secondary small (click)="performSample(want, 1)">
           <ion-icon name="thumbs-up"></ion-icon>
         </button>
-        <button dark small (tap)="sampleDismissTapped(want)">
-          <ion-icon name="notifications-off"></ion-icon>
+        <button dark small (click)="dismissSample(want)">
+          <ion-icon name="remove"></ion-icon>
         </button>
-        <button danger small (tap)="sampleTapped(want, 0)">
+        <button danger small (click)="performSample(want, 0)">
           <ion-icon name="thumbs-down"></ion-icon>
         </button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
 
-  <button fab fab-bottom fab-right class="fab-footer" (tap)="presentCreateWantModal()">
+  <button fab fab-bottom fab-right class="fab-footer" (click)="presentCreateWantModal()">
     <ion-icon name="add" is-active="false"></ion-icon>
   </button>
 </ion-content>

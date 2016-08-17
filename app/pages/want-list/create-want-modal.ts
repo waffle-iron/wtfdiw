@@ -8,8 +8,8 @@ import {
 import {ViewController} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
-import {WantItem} from '../../modules/wants/want-item';
-import {WantItemSample} from '../../modules/wants/want-item-sample';
+import {WantItem} from '../../modules/wants/want.item';
+import {WantItemSample} from '../../modules/wants/want.item.sample';
 
 @Component({
   templateUrl: './build/pages/want-list/create-want-modal.html',
@@ -24,12 +24,9 @@ export class CreateWantModalPage {
   constructor(private view: ViewController,
               private formBuilder: FormBuilder,
               private firebase: AngularFire) {
-    this.view = view;
-    this.formBuilder = formBuilder;
-    this.firebase = firebase;
   }
 
-  ngOnInit() {
+  ionViewLoaded() {
     this.form = this.formBuilder.group({
       description: ['', Validators.required]
     });

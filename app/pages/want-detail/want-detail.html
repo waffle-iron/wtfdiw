@@ -13,7 +13,7 @@
       {{(want | async)?.displaytext}}
     </h1>
   
-    <button clear small>
+    <button clear small (click)="prepareNotification()">
       Next sample in 30 minutes.
       <ion-icon name="refresh"></ion-icon>
     </button>

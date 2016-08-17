@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild/*, enableProdMode*/} from '@angular/core';
 import {Platform, Nav, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {
@@ -11,11 +11,13 @@ import {
 } from 'angularfire2';
 
 import {FIREBASE_CONFIG} from './modules/constants';
+import {NotificationService} from './modules/notifications/notification.service';
 import {WantListPage} from './pages/want-list/want-list';
 import {AboutPage} from './pages/about/about';
 import {ContactPage} from './pages/contact/contact';
 
 @Component({
+  providers: [NotificationService],
   templateUrl: './build/app.html'
 })
 
@@ -26,7 +28,8 @@ export class WtfDiw {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform,
+              private notification: NotificationService) {
     this.initializeApp();
 
     this.rootPage = WantListPage;
@@ -47,6 +50,7 @@ export class WtfDiw {
     this.platform.ready()
       .then(() => {
         StatusBar.styleDefault();
+        this.notification.listen();
       });
   }
 
@@ -54,6 +58,8 @@ export class WtfDiw {
     this.nav.setRoot(page.component);
   }
 }
+
+//enableProdMode();
 
 ionicBootstrap(WtfDiw, [
   FIREBASE_PROVIDERS,

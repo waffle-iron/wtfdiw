@@ -1,4 +1,4 @@
-import {WantItemSample} from './want-item-sample';
+import {WantItemSample} from './want.item.sample';
 
 export class WantItem {
   id: string = '';
