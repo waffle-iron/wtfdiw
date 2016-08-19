@@ -1,4 +1,4 @@
-import {Injectable, ViewChild} from '@angular/core';
+import {Inject, Injectable, ViewChild} from '@angular/core';
 import {Platform, AlertController} from 'ionic-angular';
 import {
   LocalNotifications,
@@ -9,14 +9,19 @@ import {
 } from 'ionic-native';
 import {FirebaseObjectObservable} from 'angularfire2';
 
+import {Window} from '../window/providers';
 import {WantItem} from '../wants/want.item';
 
 @Injectable()
 export class NotificationService {
   push: PushNotification;
 
-  constructor(private platform: Platform,
-              private alert: AlertController) {
+  constructor(@Inject(Window) win,
+              private platform: Platform,
+              private alertCtrl: AlertController) {
+    win.foo = (data) => {
+      console.log(`want id: ${data.additionalData.wantId}`);
+    };
   }
 
   listen() {
@@ -52,14 +57,15 @@ export class NotificationService {
     });
 
     this.push.on('registration', (data: RegistrationEventResponse) => {
-      console.log(`push::registration: ${data.registrationId}`);
-      alert(data.registrationId.toString());
+      console.log(`push::registration`);
+      console.log(JSON.stringify(data));
+      //alert(data.registrationId.toString());
     });
 
     this.push.on('notification', (data: NotificationEventResponse) => {
       console.log(`push::notification`);
       console.log(JSON.stringify(data));
-      alert(JSON.stringify(data));
+      //alert(JSON.stringify(data));
     });
 
     this.push.on('error', (e: Error) => {

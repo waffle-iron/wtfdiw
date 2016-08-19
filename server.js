@@ -1,8 +1,8 @@
 var express = require('express');
 var gcm = require('node-gcm');
 var app = express();
-//var GCM_API_KEY = 'AIzaSyAcKTPBZP3sgohe2VY76eF6r8Ic55tFM_Q'; // server key
-var GCM_API_KEY = 'AIzaSyCvxqkFVHrdkZQHZ2fv-PP_IRwe9-ddgdU'; // android key
+var GCM_API_KEY = 'AIzaSyAcKTPBZP3sgohe2VY76eF6r8Ic55tFM_Q'; // server key
+//var GCM_API_KEY = 'AIzaSyCvxqkFVHrdkZQHZ2fv-PP_IRwe9-ddgdU'; // android key
 
 var server = app.listen(3000, function () {
     console.log(' - server started up on port 3000');
@@ -19,28 +19,33 @@ app.get('/push', function (req, res) {
     var sender = new gcm.Sender(GCM_API_KEY);
     var message = new gcm.Message({
         collapseKey: 'wtfdiw',
+        priority: 'high',
         delayWhileIdle: true,
         timeToLive: 3,
+        contentAvailable: true,
         data: {
             title: 'WTFDIW',
             body: 'Should I buy a couch?',
             icon: 'ic_launcher',
+            ledColor: [22, 49, 96, 0],
+            //vibratePattern: [2000,1000,500,500],
             actions: [{
                 icon: 'ic_stat_action_thumb_up',
                 title: 'Yes',
-                callback: 'app.foo',
+                callback: 'foo',
                 foreground: false
             }, {
                 icon: 'ic_stat_action_thumb_down',
                 title: 'No',
-                callback: 'app.foo',
+                callback: 'foo',
                 foreground: false
             }, {
                 icon: 'ic_stat_action_schedule',
                 title: 'Later',
-                callback: 'app.foo',
+                callback: 'foo',
                 foreground: false
-            }]
+            }],
+            wantId: '0'
         }
     });
 

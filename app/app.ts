@@ -11,6 +11,7 @@ import {
 } from 'angularfire2';
 
 import {FIREBASE_CONFIG} from './modules/constants';
+import {WINDOW_PROVIDERS} from './modules/window/providers';
 import {NotificationService} from './modules/notifications/notification.service';
 import {WantListPage} from './pages/want-list/want-list';
 import {AboutPage} from './pages/about/about';
@@ -62,10 +63,11 @@ export class WtfDiw {
 //enableProdMode();
 
 ionicBootstrap(WtfDiw, [
-  FIREBASE_PROVIDERS,
   defaultFirebase(FIREBASE_CONFIG),
   firebaseAuthConfig({
     provider: AuthProviders.Google,
     method: AuthMethods.Redirect
-  })
+  }),
+  ...FIREBASE_PROVIDERS,
+  ...WINDOW_PROVIDERS
 ]);
